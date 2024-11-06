@@ -10,8 +10,18 @@ public class TimeFormat {
 		// It then concatenates the resulting string with the rightmost hour-digit,
 		// and then uses parseInt to cast the resulting string as an int.
 		int hours = Integer.parseInt("" + args[0].charAt(0) + args[0].charAt(1));
-		// Does the same with the minutes part of the input.
-		int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
-        // Replace this comment with the rest of your code
+		String minutes = "" + args[0].charAt(3) + args[0].charAt(4);
+		// Determine whether it's AM or PM
+        boolean isAM = hours < 12;
+		// Convert to 12-hour format
+        int displayHours = hours % 12;
+        if (displayHours == 0 &! isAM) {
+            displayHours = 12; // Handle noon (12 -> 12 PM)
+        }
+		if (isAM) {
+			System.out.println(displayHours + ":" + minutes + " AM");
+		} else {
+			System.out.println(displayHours + ":" + minutes + " PM");
+		}
 	}
 }
